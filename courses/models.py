@@ -1,5 +1,7 @@
 from django.db import models
 
+from django import forms
+
 from coaches.models import Coach
 from address.models import Address
 
@@ -17,3 +19,12 @@ class Course(models.Model):
 
     def __unicode__(self):
         return "%s (%s) - %s" % (self.name, self.coach, self.technology)
+
+class CourseForm(forms.Form):
+    CHOICES = (('p', 'Python'), ('r', 'Ruby'), ('j', "JavaScript"))
+    name = forms.CharField(max_length=100)
+    technology = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
+    coach = forms.ChoiceField(widget=forms.RadioSelect)
+    assistant = forms.ChoiceField(widget=forms.RadioSelect)
+
+

@@ -1,0 +1,7 @@
+<form action=“/“ method=“get">
+<input name=“student_name” type=“text" />
+<input name=“student_package” type=“radio" value="vip" />
+<input name=“student_package” type=“radio" value="standart"/>
+<input name=“student_package” type=“radio" value="base"/>
+<input type=“submit" />
+</form>

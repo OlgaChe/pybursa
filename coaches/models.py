@@ -1,5 +1,8 @@
 from django.contrib.auth.models import User
+
 from django.db import models
+
+from django import forms
 
 from dossier.models import Dossier
 
@@ -16,3 +19,8 @@ class Coach(models.Model):
 
     def __unicode__(self):
         return "%s %s (%s)" % (self.name, self.surname, self.job)
+
+class CoachForm(forms.Form):
+    CHOICES = (('C', 'Coach'), ('A', 'Assistant'))
+    name = forms.CharField(max_length=100)
+    package = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)

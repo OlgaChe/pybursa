@@ -3,6 +3,9 @@ from address.models import Address
 
 
 def address_list(request):
+    print request.method
+    print request.GET
+    print request.POST
     addressl = Address.objects.all()
     return render(request, 'address/list.html', {'addressl': addressl})
 

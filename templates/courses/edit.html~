@@ -1,0 +1,7 @@
+<form action=“/“ method=“get">
+<input name='name' type='text' />
+<input name='technology' type='radio' value='JS' />
+<input name='technology' type='radio' value='Python'/>
+<input name='technology' type='radio' value='JavaScript'/>
+<input type='submit' />
+</form>

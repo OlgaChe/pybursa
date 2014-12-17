@@ -21,4 +21,4 @@ def coach_edit(request):
         return redirect('coach_list')
     else:
         form = CoachForm()
-    return render(request, 'coaches/edit.html',{'form': form}) 
+    return render(request, 'coach/edit.html',{'form': form}) 

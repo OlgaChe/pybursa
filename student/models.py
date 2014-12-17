@@ -1,5 +1,7 @@
 from django.db import models
 
+from django import forms
+
 from courses.models import Course
 from dossier.models import Dossier
 
@@ -18,3 +20,8 @@ class Student(models.Model):
 
     def __unicode__(self):
         return "%s %s" % (self.first_name, self.last_name)
+
+class StudentForm(forms.Form):
+    CHOICES= (('vip', 'vip'),('standart', 'standart'),('gold', 'gold'),)
+    student_name = forms.CharField(max_length=100)
+    student_package = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
