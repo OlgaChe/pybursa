@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+<h1>{{ coach.name }} {{ coach.surname }}
+<small>{{ coach.get_ctype_display }}</small>
+</h1>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h3 class="panel-title">Basic info</h3>
+</div>
+<table class="table table-condensed table-hover">
+<tbody>
+<tr>
+<td>Email</td>
+<td>{{ coach.email }}</td>
+</tr>
+<tr>
+<td>Phone number</td>
+<td>{{ coach.phone }}</td>
+<td>Job</td>
+<td>{{ coach.job }}</td>
+</tr>
+{% if coach.course_set.all %}
+<tr>
+<td>Teaches courses</td>
+<td>
+{% for course in coach.course_set.all %}
+{{ course.name }}<br>
+{% endfor %}
+</td>
+</tr>
+{% endif%}
+{% if coach.course_assistant.all %}
+<tr>
+<td>Asisstates courses</td>
+<td>
+{% for course in coach.course_assistant.all %}
+{{ course.name }}<br>
+{% endfor %}
+</td>
+</tr>
+{% endif %}
+</tbody>
+</table>
+</div>
+{% endblock content %}

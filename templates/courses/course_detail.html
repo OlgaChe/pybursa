@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+<h1>{{ course.name }}</h1>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h3 class="panel-title">Basic info</h3>
+</div>
+<table class="table table-condensed table-hover">
+<tbody>
+<tr>
+<td>Technology</td>
+<td>{{ course.get_technology_display }}</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>{{ course.description }}</td>
+</tr>
+<tr>
+<td>Coach</td>
+<td>
+<a href="{% url 'coach_info' course.coach.id %}">
+{{ course.coach }}
+</a>
+</td>
+</tr>
+{% if course.assistant %}
+<tr>
+<td>Assistant</td>
+<td>
+<a href="{% url 'coach_info' course.assistant.id %}">
+{{ course.assistant }}
+</a>
+</td>
+</tr>
+{% endif %}
+</tbody>
+</table>
+</div>
+{% endblock content %}

@@ -1,0 +1,13 @@
+from django.db import models
+
+from address.models import Address
+from courses.models import Course
+
+class Dossier(models.Model):
+    COLOR_CHOICES = (('r', 'red'),('o', 'orange'),('y', 'yellow'),('g', 'green'),('w', 'white blue'),('b', 'blue'),('v','violet'))
+    address = models.ForeignKey(Address, blank=True, null=True, related_name="stu_address")
+    un_courses = models.ManyToManyField('courses.Course', blank=True)
+    fav_color = models.CharField(max_length=1, choices=COLOR_CHOICES, default='r')
+
+    def __unicode__(self):
+        return "%s %s" % (self.address, self.un_courses, self.fav_color)
