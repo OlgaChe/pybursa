@@ -1,7 +1,7 @@
 from django.db import models
 
 from address.models import Address
-from courses.models import Course
+#from courses.models import Course
 
 class Dossier(models.Model):
     COLOR_CHOICES = (('r', 'red'),('o', 'orange'),('y', 'yellow'),('g', 'green'),('w', 'white blue'),('b', 'blue'),('v','violet'))

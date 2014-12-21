@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from student.views import students_list, students_item , student_edit
+from student.views import students_list, students_item #, student_edit
 
 
 urlpatterns = patterns('',

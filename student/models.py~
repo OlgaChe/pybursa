@@ -19,9 +19,16 @@ class Student(models.Model):
     dossier = models.OneToOneField(Dossier, null=True)
 
     def __unicode__(self):
-        return "%s %s" % (self.first_name, self.last_name)
+        return "%s %s" % (self.name, self.surname)
 
 class StudentForm(forms.Form):
-    CHOICES= ((‘vip’, ‘vip’),(‘standart’, ‘standart’),(‘gold’, ‘gold’),)
+    class Meta:
+         model = Student
+         fields = ['name', 'package']
+         widgets = {'package': forms.RadioSelect}
+         labels = {'name': 'Student name'}
+    CHOICES= (('vip', 'vip'),('standart', 'standart'),('gold', 'gold'),)
     student_name = forms.CharField(max_length=100)
     student_package = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
+
+

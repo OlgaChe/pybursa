@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from coaches.models import Coach
+from coaches.models import Coach, CoachForm
 
 
 def coaches_list(request):
@@ -13,12 +13,25 @@ def coach_info(request, coach_id):
     coach = get_object_or_404(Coach, id=coach_id)
     return render(request, 'coaches/coach_detail.html', {'coach': coach})
 
-def coach_edit(request):
+def coach_edit(request, coach_id):
+    coach = Coach.objects.get(id=coach_id) 
     if request.method == 'post':
-    form = CoachForm(request.POST)
+        form = CoachForm(request.POST, instance=coach)
     if form.is_valid():
+        coach = form.save() 
         print form.cleaned_data
-        return redirect('coach_list')
+        return redirect('coach_list', coach_id)
     else:
-        form = CoachForm()
+        form = CoachForm(instance=coach)
     return render(request, 'coaches/edit.html',{'form': form}) 
+
+def coach_add(request):
+    title = "Coach add item"
+    if request.method == 'POST':
+        form = CoachModelForm(request.POST)
+        if form.is_valid():
+            coach = form.save()
+            return redirect('coach-edit', coach.id)
+        else:
+            form = CoachModelForm()
+        return render(request, 'coaches/edit.html', {'form': form, 'title': title}) 

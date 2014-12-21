@@ -11,3 +11,5 @@ class Dossier(models.Model):
 
     def __unicode__(self):
         return "%s %s" % (self.address, self.un_courses, self.fav_color)
+
+# address = '1', fav_color = 'r'

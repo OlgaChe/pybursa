@@ -21,6 +21,11 @@ class Course(models.Model):
         return "%s (%s) - %s" % (self.name, self.coach, self.technology)
 
 class CourseForm(forms.Form):
+    class Meta:
+         model = Course
+         fields = ['name', 'technology', 'coach', 'assistant']
+         widgets = {'technology': forms.RadioSelect, 'coach': forms.RadioSelect, 'assistant': forms.RadioSelect}
+         labels = {'name': 'Coach name'}
     CHOICES = (('p', 'Python'), ('r', 'Ruby'), ('j', "JavaScript"))
     name = forms.CharField(max_length=100)
     technology = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)

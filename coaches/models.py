@@ -21,6 +21,11 @@ class Coach(models.Model):
         return "%s %s (%s)" % (self.name, self.surname, self.job)
 
 class CoachForm(forms.Form):
+    class Meta:
+         model = Coach
+         fields = ['name', 'job']
+         widgets = {'job': forms.RadioSelect}
+         labels = {'name': 'Coach name'}
     CHOICES = (('C', 'Coach'), ('A', 'Assistant'))
     name = forms.CharField(max_length=100)
-    package = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
+    job = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
