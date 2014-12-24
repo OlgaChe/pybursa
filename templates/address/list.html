@@ -9,9 +9,9 @@
 <link rel="icon" href="favicon.ico">
 <title>Starter Template for Bootstrap</title>
 <!-- Bootstrap core CSS -->
-<link href="{% static "dist/css/bootstrap.min.css" %}" rel="stylesheet">
+<link href="{% static "../../static/dist/css/bootstrap.min.css" %}" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="{% static "examples/starter-template.css" %}" rel="stylesheet">
+<link href="{% static "../starter-template.css" %}" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -33,9 +33,9 @@
 </div>
 </nav>
 <div class="container">
-<h1>PyBursa Students list</h1>
+<h1>PyBursa Address list</h1>
 <ul class="list-group">
-{% for student in students %}
+{% for address in addressl %}
 <li class="list-group-item">
 <a href="/address/{{ address.id }}/">
 {{ address.country }} {{ address.street }}

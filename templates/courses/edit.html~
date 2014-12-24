@@ -3,5 +3,7 @@
 <input name='technology' type='radio' value='JS' />
 <input name='technology' type='radio' value='Python'/>
 <input name='technology' type='radio' value='JavaScript'/>
+<input name='job' type='radio' value='coach'/>
+<input name='job' type='radio' value='assistant'/>
 <input type='submit' />
 </form>

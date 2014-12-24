@@ -14,6 +14,20 @@ def course_info(request, course_id):
     course = get_object_or_404(Course, id=course_id)
     return render(request, 'courses/course_detail.html', {'course': course})
 
+def course_add_edit(request, course_id = None):
+    course = None
+    if course_id is not None:
+        course = get_object_or_404(Course, id=course_id)
+    if request.method == 'POST':
+        form = CourseForm(request.POST, instance=course)
+        if form.is_valid():
+            course = form.save() 
+            return redirect('course-edit', course.id)
+    else:
+        form = CourseModelForm(instance=course)
+    return render(request, 'courses/edit.html', {'form': form, 'title': title}) 
+
+'''
 def course_edit(request, course_id):
     course = Course.objects.get(id=course_id) 
     if request.method == 'post':
@@ -36,3 +50,4 @@ def course_add(request):
         else:
             form = CourseModelForm()
         return render(request, 'courses/edit.html', {'form': form, 'title': title}) 
+'''

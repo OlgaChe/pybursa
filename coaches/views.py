@@ -13,6 +13,21 @@ def coach_info(request, coach_id):
     coach = get_object_or_404(Coach, id=coach_id)
     return render(request, 'coaches/coach_detail.html', {'coach': coach})
 
+def coach_add_edit(request, coach_id = None):
+    coach = None
+    if coach_id is not None:
+        coach = get_object_or_404(Coach, id=coach_id)
+    if request.method == 'POST':
+        form = CoachForm(request.POST, instance=coach)
+        if form.is_valid():
+            coach = form.save() 
+            return redirect('coach-edit', coach.id)
+    else:
+        form = CoachModelForm(instance=coach)
+    return render(request, 'coaches/edit.html', {'form': form, 'title': title}) 
+
+
+'''
 def coach_edit(request, coach_id):
     coach = Coach.objects.get(id=coach_id) 
     if request.method == 'post':
@@ -35,3 +50,4 @@ def coach_add(request):
         else:
             form = CoachModelForm()
         return render(request, 'coaches/edit.html', {'form': form, 'title': title}) 
+'''
