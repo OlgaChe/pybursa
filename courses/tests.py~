@@ -1,5 +1,7 @@
 from django.test import TestCase
+from selenium.webdriver.firefox.webdriver import WebDriver 
 
+# Create your tests here.
 
 class CourseTests(TestCase):
     def test_course_create(self):

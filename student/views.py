@@ -5,6 +5,9 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView 
 from django.views.generic.edit import FormView
 
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse, HttpResponseRedirect
+
 
 class StudentView(ListView):
     template_name = "student/list.html"
@@ -58,3 +61,17 @@ def student_add(request):
         else:
             form = StudentModelForm()
         return render(request, 'student/edit.html', {'form': form, 'title': title}) 
+
+def send_email(request):
+    subject = request.POST.get('Report', '')
+    student = Student.name
+    message = request.POST.get('message body', '')
+    to_email = request.POST.get('admin@example.com', '')
+    if subject and message and to_email:
+        try:
+            send_mail(subject, message, to_email, ['admin@example.com'])
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
+        return HttpResponseRedirect('/student/mail.html')
+    else:
+        return HttpResponse('Make sure all fields are entered and valid.')

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<a href = "/student/mail/"><button name = 'report' value = 'Report' /></a>
 <table class="table table-hover">
 <thead>
 <tr>
@@ -17,7 +18,7 @@
 <td>{{ forloop.counter }}</td>
 <td>
 <a href="/student/{{ student.id }}/">
-{{ student.name }}
+<li>{{ student.name }}</li>
 </a>
 </td>
 <td>{{ student.surname }}</td>
